@@ -106,7 +106,15 @@ function populateBooks(lang = 'en') {
                 // If imgSrc is BLANK, generate the typographic cover
                 // Note: Replace 'YOUR_CLOUD_NAME' with your actual Cloudinary cloud name.
                 const encodedTitle = encodeURIComponent(title.replace(/'/g, "\\'"));
-                thumbnailSrc = `https://res.cloudinary.com/dzef5s7pq/image/upload/w_200,h_300,c_fill/l_text:Arial_32_bold:${encodedTitle},co_rgb:333333,g_center,w_220,c_fit/l_text:Arial_20:Martin%20Simonson,co_rgb:333333,g_south,y_40/default_bg_kxcmab.png`;
+                let fontSize = 32; // Default size
+                if (title.length > 55) {
+                    fontSize = 22; // Smallest size for very long titles
+                    } else if (title.length > 25) {
+                        fontSize = 28; // Medium size for medium titles
+                    }
+
+// Then modify the URL string to use this new variable
+                    thumbnailSrc = `https://res.cloudinary.com/dzef5s7pq/image/upload/w_200,h_300,c_fill/l_text:Arial_${fontSize}_bold:${encodedTitle},co_rgb:333333,g_center,w_200,c_fit/l_text:Arial_20:Martin%20Simonson,co_rgb:333333,g_south,y_40/default_bg_kxcmab.png`;
             }
             console.log('Generated Thumbnail URL:', thumbnailSrc);
 
@@ -118,7 +126,8 @@ function populateBooks(lang = 'en') {
             container.innerHTML += `
                 <a href="#" class="group text-center block book-item" 
                    data-type="${book.category}" 
-                   data-img-src="${originalImgSrc}" 
+                   data-img-src="${originalImgSrc}"
+                   data-final-src="${thumbnailSrc}" 
                    data-title-en="${escapeHTML(book.title_en)}" 
                    data-title-es="${escapeHTML(book.title_es)}" 
                    data-desc-en="${descEn}" 

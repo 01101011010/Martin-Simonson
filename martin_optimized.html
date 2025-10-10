@@ -527,25 +527,17 @@
             const title = (lang === 'es' ? bookData.titleEs : bookData.titleEn) || 'Untitled';
 
     // Set a fixed size for the placeholder
-            modalImage.style.width = '250px';
-            modalImage.style.height = '375px';
-            modalImage.style.objectFit = 'cover';
+             // --- NEW SIMPLIFIED LOGIC ---
+    // Start with the final, correct URL from the grid thumbnail.
+            let modalImgSrc = bookData.finalSrc;
 
-            let modalImgSrc;
-            if (bookData.imgSrc) {
-        // If there IS an image, transform it
-                const modalTransformation = '/upload/w_250,h_375,c_pad,b_auto/';
-                modalImgSrc = transformCloudinaryUrl(bookData.imgSrc, modalTransformation);
-            } else {
-        // If there is NO image, generate the typographic cover for the modal
-        // Note: Replace 'YOUR_CLOUD_NAME' with your actual Cloudinary cloud name.
-                const encodedTitle = encodeURIComponent(title.replace(/'/g, "\\'"));
-                modalImgSrc = `https://res.cloudinary.com/dzef5s7pq/image/upload/w_250,h_375,c_fill/l_text:Arial_32_bold:${encodedTitle},co_rgb:333333,g_center,w_220,c_fit/l_text:Arial_20:Martin%20Simonson,co_rgb:333333,g_south,y_40/default_bg_kxcmab.png`;
-
+            // The URL is already perfect, we just replace the thumbnail dimensions (w_200,h_300) 
+            // with the larger modal dimensions (w_250,h_375).
+            if (modalImgSrc) {
+                modalImgSrc = modalImgSrc.replace('w_200,h_300', 'w_250,h_375');
             }
-            console.log('Generated Modal URL:', modalImgSrc);
     
-    // Set the image source AFTER all logic
+    // Set the image source. Done.
             modalImage.src = modalImgSrc;
     
     // Populate the rest of the modal content
@@ -584,7 +576,7 @@
                 if (item.hasAttribute('data-listener-attached')) return;
                 item.addEventListener('click', (e) => {
                     e.preventDefault();
-                    const bookData = { type: item.dataset.type, imgSrc: item.dataset.imgSrc, titleEn: item.dataset.titleEn, titleEs: item.dataset.titleEs, descEn: item.dataset.descEn, descEs: item.dataset.descEs, link: item.dataset.link, availableLangs: item.dataset.availableLangs, year: item.dataset.year };
+                    const bookData = { type: item.dataset.type, imgSrc: item.dataset.imgSrc, titleEn: item.dataset.titleEn, titleEs: item.dataset.titleEs, descEn: item.dataset.descEn, descEs: item.dataset.descEs, link: item.dataset.link, availableLangs: item.dataset.availableLangs, year: item.dataset.year, finalSrc: item.dataset.finalSrc };
                     openModal(bookData);
                 });
                 item.setAttribute('data-listener-attached', 'true');
