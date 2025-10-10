@@ -93,9 +93,10 @@ function populateBooks(lang = 'en') {
             // THIS LINE IS THE FIX: It now defaults to 'Untitled' if the title is missing.
             const title = (lang === 'es' ? book.title_es : book.title_en) || 'Untitled';
             const edition = (lang === 'es' ? book.edition_es : book.edition_en) || '';
+            const purchaseLink = (lang === 'es' ? book.purchaseLink_es : book.purchaseLink_en) || '#';
             
             let thumbnailSrc;
-            const originalImgSrc = book.imgSrc ? decodeURIComponent(book.imgSrc) : '';
+            const originalImgSrc = (lang === 'es' ? book.imgSrc_es : book.imgSrc_en) || '';
 
             if (originalImgSrc) {
                 // If there IS an image, use the standard transformation
@@ -122,7 +123,7 @@ function populateBooks(lang = 'en') {
                    data-title-es="${escapeHTML(book.title_es)}" 
                    data-desc-en="${descEn}" 
                    data-desc-es="${descEs}" 
-                   data-link="${escapeHTML(book.purchaseLink)}" 
+                   data-link="${escapeHTML(purchaseLink)}"
                    data-available-langs="${escapeHTML(book.availableLangs)}" 
                    data-year="${escapeHTML(book.year)}">
                     <div class="relative inline-block overflow-hidden rounded-lg shadow-lg group-hover:shadow-xl transition-all duration-300">
