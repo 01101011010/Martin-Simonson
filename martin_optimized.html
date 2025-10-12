@@ -84,56 +84,55 @@
             font-family: 'Inter', sans-serif;
             transition: background-image 0.5s ease-in-out;
         }
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
-            z-index: -1;
-            /* Add this line to allow the overlay to fade */
-            transition: background-color 0.5s ease-in-out;
+        /* NEW: Overlay for section content to improve text readability */
+        .section-content {
+            background-color: rgba(0, 0, 0, 0.7); /* Dark semi-transparent overlay */
+            padding: 2rem; /* Add some padding so text isn't right at the edge of the dark box */
+            border-radius: 0.5rem; /* Slightly rounded corners for aesthetics */
+            backdrop-filter: blur(5px); /* Optional: Adds a subtle blur effect to the background visible through the overlay */
+            -webkit-backdrop-filter: blur(5px); /* For Safari compatibility */
         }
-        /* --- RESPONSIVE BACKGROUNDS --- */
-        
-        /* Shared properties for all dynamic backgrounds */
-        .page-hero, .page-books, .page-news {
+
+        /* Adjust padding for smaller screens if needed */
+        @media (max-width: 768px) {
+            .section-content {
+                padding: 1rem;
+            }
+        }
+      /* --- NEW STATIC SECTION BACKGROUNDS --- */
+
+        /* Shared properties for any section that has a background */
+        #hero, #books, #news {
             background-position: center center;
             background-repeat: no-repeat;
-            background-attachment: fixed; /* Creates a nice parallax scroll effect */
+            /* This is the key: it fixes the background relative to the viewport */
+            background-attachment: fixed; 
+            /* This ensures the image always fills the background area */
+            background-size: cover;
         }
 
-        /* Default Mobile Styles (Mobile First) using your corrected links */
-        .page-hero {
+        /* Assigning the specific background image to each section */
+
+        /* For Mobile */
+        #hero {
             background-image: url('https://res.cloudinary.com/dzef5s7pq/image/upload/v1758985648/Journey_rwtogk.jpg');
-            background-size: contain; /* Show the whole image */
         }
-        .page-books {
+        #books {
             background-image: url('https://res.cloudinary.com/dzef5s7pq/image/upload/v1758985867/Stream_vvrse3.jpg');
-            background-size: contain;
         }
-        .page-news {
+        #news {
             background-image: url('https://res.cloudinary.com/dzef5s7pq/image/upload/v1758985790/Ice_ogqlc4.jpg');
-            background-size: contain;
         }
 
-        /* Desktop Overrides */
+            /* For Desktop - overrides the mobile images on larger screens */
         @media (min-width: 769px) {
-            /* On larger screens, cover the viewport for an immersive feel */
-            .page-hero, .page-books, .page-news {
-                background-size: cover;
-            }
-
-            /* And switch to the higher-resolution desktop images */
-            .page-hero {
+            #hero {
                 background-image: url('https://res.cloudinary.com/dzef5s7pq/image/upload/w_1920,q_auto,f_auto/v1758389151/Journey_bp28bm.jpg');
             }
-            .page-books {
+            #books {
                 background-image: url('https://res.cloudinary.com/dzef5s7pq/image/upload/w_1920,q_auto,f_auto/v1758389155/Stream_fo2u2x.jpg');
             }
-            .page-news {
+            #news {
                 background-image: url('https://res.cloudinary.com/dzef5s7pq/image/upload/w_1920,q_auto,f_auto/v1758389149/Ice_rnvvk1.jpg');
             }
         }
@@ -744,43 +743,6 @@
                 }
             );
         });
-
-        // --- DYNAMIC BACKGROUND IMAGE CHANGER ---
-    document.addEventListener('DOMContentLoaded', () => {
-        const sectionIds = ['hero', 'books', 'news']; // The sections we care about
-        const body = document.body;
-        let currentSectionId = 'hero';
-        body.classList.add('page-hero'); // Set initial class
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const sectionId = entry.target.id;
-                    if (sectionIds.includes(sectionId) && sectionId !== currentSectionId) {
-                    // Switch the class on the body
-                        body.classList.remove('page-' + currentSectionId);
-                        body.classList.add('page-' + sectionId);
-                        currentSectionId = sectionId;
-                    }
-                }
-            });
-        }, { threshold: 0.5 });
-
-        sectionIds.forEach(sectionId => {
-            const section = document.getElementById(sectionId);
-            if (section) {
-                observer.observe(section);
-            }
-        });
-
-        const heroSection = document.querySelector('section');
-        if (heroSection && !heroSection.id) {
-            heroSection.id = 'hero';
-        }
-        if (heroSection && !document.getElementById('hero')) { // Observe hero if it wasn't in the list
-            observer.observe(heroSection);
-        }
-    });
     </script>
 </body>
 </html>
