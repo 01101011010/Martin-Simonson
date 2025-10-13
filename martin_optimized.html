@@ -136,6 +136,23 @@
                 background-image: url('https://res.cloudinary.com/dzef5s7pq/image/upload/w_1920,q_auto,f_auto/v1758389149/Ice_rnvvk1.jpg');
             }
         }
+        /* NEW: Styles for Responsive YouTube Embed in Talks Section */
+        .talks-video-wrapper {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%; /* 16:9 Aspect Ratio (9 / 16 = 0.5625) */
+            border-radius: 0.5rem; /* Optional: adds rounded corners */
+            overflow: hidden; /* Ensures the iframe stays within the rounded corners */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            }       
+
+        .talks-video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
 
     </style>
     <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
