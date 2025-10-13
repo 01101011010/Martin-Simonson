@@ -159,6 +159,10 @@ function populateBooks(lang = 'en') {
  * Populates the talks section.
  * EXPECTED HEADERS: titleEn,titleEs,descEn,descEs,link,linkTextEn,linkTextEs
  */
+/**
+ * Populates the talks section.
+ * EXPECTED HEADERS: titleEn,titleEs,descEn,descEs,dateEn,dateEs,congressEn,congressEs,link,linkTextEn,linkTextEs
+ */
 function populateTalks(lang = 'en') {
     const container = document.querySelector('#talks .space-y-8');
     if (!container || !fetchedTalksData.length) return;
@@ -172,12 +176,30 @@ function populateTalks(lang = 'en') {
     collapseAllBtn.textContent = lang === 'es' ? 'Ocultar charlas' : 'Collapse talks';
 
     const renderTalk = (talk) => {
+        // Get language-specific data
         const title = lang === 'es' ? talk.title_es : talk.title_en;
         const description = lang === 'es' ? talk.description_es : talk.description_en;
         const linkText = lang === 'es' ? talk.linkText_es : talk.linkText_en;
+        const date = (lang === 'es' ? talk.date_es : talk.date_en) || '';
+        const congress = (lang === 'es' ? talk.congress_es : talk.congress_en) || '';
+
+        // --- NEW LOGIC ---
+        // Build the metadata string only if data exists
+        let metaInfo = '';
+        if (date) metaInfo += date;
+        if (date && congress) metaInfo += ' | '; // Add separator only if both exist
+        if (congress) metaInfo += congress;
+
+        // Create the HTML for the metadata line only if there is info to show
+        const metaHtml = metaInfo 
+            ? `<p class="text-sm text-gray-500 mt-2">${metaInfo}</p>` 
+            : '';
+        // --- END NEW LOGIC ---
+
         return `
             <div class="border-b border-gray-700 pb-4">
                 <h3 class="text-lg md:text-xl font-bold text-gray-100">${title}</h3>
+                ${metaHtml} 
                 <p class="text-gray-400 mt-1">${description} | 
                     <a href="${talk.link}" target="_blank" rel="noopener noreferrer" class="text-indigo-400 hover:underline">
                         ${linkText}
@@ -200,8 +222,12 @@ function populateTalks(lang = 'en') {
     // Initial population
     populate(false);
 
-    showAllBtn.addEventListener('click', () => populate(true));
-    collapseAllBtn.addEventListener('click', () => populate(false));
+    // Make sure event listeners are only added once
+    if (!showAllBtn.dataset.listenerAttached) {
+        showAllBtn.addEventListener('click', () => populate(true));
+        collapseAllBtn.addEventListener('click', () => populate(false));
+        showAllBtn.dataset.listenerAttached = 'true';
+    }
 }
 /**
  * Populates the news section.
