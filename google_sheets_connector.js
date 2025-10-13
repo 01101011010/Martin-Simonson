@@ -321,20 +321,43 @@ function populateNews(lang = 'en') {
 /**
  * Main function to initialize all dynamic content.
  */
+/**
+ * Main function to initialize all dynamic content.
+ */
 async function initializeDynamicContent() {
-    console.log("Initializing dynamic content from Google Sheets...");
-    
-    // Fetch all data in parallel
+    console.log("Initializing dynamic content...");
+    const cacheDuration = 3600 * 1000; // Cache data for 1 hour (in milliseconds)
+
+    // A helper function to get data from cache or fetch it
+    async function getOrFetchData(key, url) {
+        const cachedItem = localStorage.getItem(key);
+        if (cachedItem) {
+            const { timestamp, data } = JSON.parse(cachedItem);
+            // Check if the cache is still valid
+            if (Date.now() - timestamp < cacheDuration) {
+                console.log(`Loading ${key} data from cache.`);
+                return data; // Use cached data
+            }
+        }
+        // If no cache or cache is old, fetch new data
+        console.log(`Fetching new data for ${key}.`);
+        const data = await fetchDataFromSheet(url);
+        // Save the new data and a timestamp to the cache
+        localStorage.setItem(key, JSON.stringify({ timestamp: Date.now(), data }));
+        return data;
+    }
+
+    // Fetch all data in parallel using our new caching function
     [fetchedBooksData, fetchedTalksData, fetchedNewsData] = await Promise.all([
-        fetchDataFromSheet(googleSheetUrls.books),
-        fetchDataFromSheet(googleSheetUrls.talks),
-        fetchDataFromSheet(googleSheetUrls.news)
+        getOrFetchData('booksCache', googleSheetUrls.books),
+        getOrFetchData('talksCache', googleSheetUrls.talks),
+        getOrFetchData('newsCache', googleSheetUrls.news)
     ]);
 
-    // --- DEBUGGING STEP: Log the fetched data to the console ---
-    console.log("Books data from sheet:", fetchedBooksData);
-    console.log("Talks data from sheet:", fetchedTalksData);
-    console.log("News data from sheet:", fetchedNewsData);
+    // --- DEBUGGING STEP ---
+    console.log("Books data:", fetchedBooksData);
+    console.log("Talks data:", fetchedTalksData);
+    console.log("News data:", fetchedNewsData);
     // --- END DEBUGGING STEP ---
 
     const currentLang = localStorage.getItem('language') || 'en';
