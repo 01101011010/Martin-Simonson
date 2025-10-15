@@ -163,20 +163,6 @@ function populateBooks(lang = 'en') {
 }
 
 
-
-
-/**
- * Populates the talks section.
- * EXPECTED HEADERS: titleEn,titleEs,descEn,descEs,link,linkTextEn,linkTextEs
- */
-/**
- * Populates the talks section.
- * EXPECTED HEADERS: titleEn,titleEs,descEn,descEs,dateEn,dateEs,congressEn,congressEs,link,linkTextEn,linkTextEs
- */
-/**
- * Populates the talks section.
- * EXPECTED HEADERS: titleEn,titleEs,descEn,descEs,dateEn,dateEs,congressEn,congressEs,youtubeLink,link,linkTextEn,linkTextEs
- */
 function populateTalks(lang = 'en') {
     const container = document.querySelector('#talks .space-y-8');
     if (!container || !fetchedTalksData.length) return;
@@ -189,26 +175,29 @@ function populateTalks(lang = 'en') {
     collapseAllBtn.textContent = lang === 'es' ? 'Ocultar charlas' : 'Collapse talks';
 
     const renderTalk = (talk) => {
+        // --- 1. Get all the data ---
         const title = lang === 'es' ? talk.title_es : talk.title_en;
         const description = lang === 'es' ? talk.description_es : talk.description_en;
         const linkText = lang === 'es' ? talk.linkText_es : talk.linkText_en;
         const date = (lang === 'es' ? talk.date_es : talk.date_en) || '';
         const congress = (lang === 'es' ? talk.congress_es : talk.congress_en) || '';
-        const videoId = getYoutubeVideoId(talk.youtubeLink); // Get video ID
+        const videoId = getYoutubeVideoId(talk.youtubeLink);
 
+        // --- 2. Build the metadata for the right column (always used) ---
         let metaInfo = '';
         if (date) metaInfo += date;
         if (date && congress) metaInfo += ' | ';
         if (congress) metaInfo += congress;
 
-        const metaHtml = metaInfo ? `<p class="text-sm text-gray-500 mt-2">${metaInfo}</p>` : '';
-
-        // This is the HTML for the text content (Title, Meta, Description)
+        const metaHtml = metaInfo 
+            ? `<p class="text-sm text-gray-400 mt-2">${escapeHTML(metaInfo)}</p>` 
+            : '';
+        
         const textContentHtml = `
             <div>
                 <h3 class="text-lg md:text-xl font-bold text-gray-100">${title}</h3>
                 ${metaHtml}
-                <p class="text-gray-400 mt-1">${description} | 
+                <p class="text-gray-400 mt-2">${description} | 
                     <a href="${talk.link}" target="_blank" rel="noopener noreferrer" class="text-indigo-400 hover:underline">
                         ${linkText}
                     </a>
@@ -216,9 +205,10 @@ function populateTalks(lang = 'en') {
             </div>
         `;
 
-        // If a video ID exists, build the two-column layout
+        // --- 3. Build the left column (either video or info card) ---
+        let leftColumnHtml = '';
         if (videoId) {
-            const embedHtml = `
+            leftColumnHtml = `
                 <div class="talks-video-wrapper">
                     <iframe 
                         src="https://www.youtube.com/embed/${videoId}" 
@@ -229,32 +219,37 @@ function populateTalks(lang = 'en') {
                     </iframe>
                 </div>
             `;
-
-            return `
-                <div class="border-b border-gray-700 pb-8 mb-8">
-                    <div class="flex flex-col md:flex-row md:gap-8 items-start">
-                        <div class="w-full md:w-1/2 mb-4 md:mb-0">${embedHtml}</div>
-                        <div class="w-full md:w-1/2">${textContentHtml}</div>
-                    </div>
+        } else {
+                leftColumnHtml = `
+                    <div class="talks-info-card">
+                    ${congress ? `<p class="congress-name">${escapeHTML(congress)}</p>` : ''}
+                    ${date ? `<p class="talk-date">${escapeHTML(date)}</p>` : ''}
                 </div>
             `;
-        } else {
-            // If no video, return the original, simple layout
-            return `<div class="border-b border-gray-700 pb-4">${textContentHtml}</div>`;
         }
+    
+        // --- 4. Assemble the final HTML using both columns ---
+        return `
+            <div class="border-b border-white pb-8 mb-8">
+                <div class="flex flex-col md:flex-row md:gap-8 items-start">
+                    <div class="w-full md:w-1/2 mb-4 md:mb-0">${leftColumnHtml}</div>
+                    <div class="w-full md:w-1/2">${textContentHtml}</div>
+                </div>
+            </div>
+        `;
     };
 
     const populate = (showAll = false) => {
         container.innerHTML = '';
         const itemsToRender = showAll ? fetchedTalksData : fetchedTalksData.slice(0, initialItemsToShow);
         itemsToRender.forEach(talk => container.innerHTML += renderTalk(talk));
-
+        
         showAllBtn.disabled = showAll;
         collapseAllBtn.disabled = !showAll;
         showAllBtn.classList.toggle('opacity-50', showAll);
         collapseAllBtn.classList.toggle('opacity-50', !showAll);
     };
-
+    
     populate(false);
 
     if (!showAllBtn.dataset.listenerAttached) {
@@ -287,7 +282,7 @@ function populateNews(lang = 'en') {
         const imgSrc = post.imgSrc || '';
         
         return `
-            <div class="border-b border-gray-700 pb-4">
+            <div class="border-b border-white pb-4">
                 <h3 class="text-lg md:text-xl font-bold text-gray-100">${title}</h3>
                 <p class="text-sm text-gray-500 mt-1">${date} | 
                     <a href="#" class="news-item-link text-indigo-400 hover:underline"
