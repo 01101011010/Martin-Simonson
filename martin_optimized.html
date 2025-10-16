@@ -580,6 +580,13 @@
                     <p id="news-modal-date" class="text-sm text-gray-500 mb-2"></p>
                     <h2 id="news-modal-title" class="text-2xl md:text-3xl font-bold mb-4 text-white"></h2>
                     <div id="news-modal-desc" class="text-gray-400 leading-relaxed"></div>
+                
+                    <div class="pt-6">
+                        <a id="news-modal-link" href="#" target="_blank" rel="noopener noreferrer" 
+                        class="bg-indigo-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-indigo-700 transition duration-300 inline-block">
+                            </a>
+                    </div>
+                
                 </div>
             </div>
         </div>
@@ -850,21 +857,32 @@
         function openNewsModal(data) {
             const lang = localStorage.getItem('language') || 'en';
 
-            // Populate the modal with language-specific data
+            // Populate existing modal elements
             document.getElementById('news-modal-img').src = data.imgSrc;
             document.getElementById('news-modal-date').textContent = lang === 'es' ? data.dateEs : data.dateEn;
             document.getElementById('news-modal-title').textContent = lang === 'es' ? data.titleEs : data.titleEn;
             document.getElementById('news-modal-desc').innerHTML = lang === 'es' ? data.descriptionEs : data.descriptionEn;
-
             document.getElementById('news-modal-img').style.display = data.imgSrc ? 'block' : 'none';
 
+            // --- NEW: Handle the link button ---
+            const modalLink = document.getElementById('news-modal-link');
+            if (data.link) {
+                modalLink.href = data.link;
+                modalLink.textContent = lang === 'es' ? data.linkTextEs : data.linkTextEn;
+                modalLink.parentElement.style.display = 'block'; // Show the button's container
+            } else {
+                modalLink.parentElement.style.display = 'none'; // Hide the button if there's no link
+            }
+            // --- END NEW ---
+
+            // Show the modal with animation
             document.body.classList.add('modal-open');
             newsModal.classList.remove('hidden');
-                setTimeout(() => {
-                    newsModal.classList.add('opacity-100');
-                    newsModalContent.classList.remove('scale-95');
-                }, 10);
-            }
+            setTimeout(() => {
+                newsModal.classList.add('opacity-100');
+                newsModalContent.classList.remove('scale-95');
+            }, 10);
+        }
 
         function closeNewsModal() {
             newsModalContent.classList.add('scale-95');
@@ -895,7 +913,10 @@
                 dateEs: link.dataset.dateEs,
                 imgSrc: link.dataset.imgSrc,
                 descriptionEn: link.dataset.descriptionEn,
-                descriptionEs: link.dataset.descriptionEs
+                descriptionEs: link.dataset.descriptionEs,
+                link: link.dataset.link,
+                linkTextEn: link.dataset.linkTextEn, 
+                linkTextEs: link.dataset.linkTextEs  
             };
             openNewsModal(newsData);
         }

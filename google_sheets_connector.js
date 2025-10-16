@@ -280,6 +280,9 @@ function populateNews(lang = 'en') {
         const descriptionEn = post.description_en || ''; // English description
         const descriptionEs = post.description_es || ''; // Spanish description
         const imgSrc = post.imgSrc || '';
+        const link = post.link || '';
+        const linkTextEn = post.linkText_en || 'Read More';
+        const linkTextEs = post.linkText_es || 'Leer Más';
         
         return `
             <div class="border-b border-white pb-4">
@@ -292,7 +295,10 @@ function populateNews(lang = 'en') {
                        data-date-es="${escapeHTML(post.date_es)}"
                        data-img-src="${escapeHTML(imgSrc)}"
                        data-description-en="${escapeHTML(descriptionEn)}"
-                       data-description-es="${escapeHTML(descriptionEs)}">
+                       data-description-es="${escapeHTML(descriptionEs)}"
+                       data-link="${escapeHTML(link)}"
+                       data-link-text-en="${escapeHTML(linkTextEn)}"
+                       data-link-text-es="${escapeHTML(linkTextEs)}">
                         ${readMoreText}
                     </a>
                 </p>
@@ -303,12 +309,18 @@ function populateNews(lang = 'en') {
         container.innerHTML = '';
         const itemsToRender = showAll ? fetchedNewsData : fetchedNewsData.slice(0, initialItemsToShow);
         itemsToRender.forEach(post => container.innerHTML += renderNews(post));
+        showAllBtn.disabled = showAll;
+        collapseAllBtn.disabled = !showAll;
+        showAllBtn.classList.toggle('opacity-50', showAll);
+        collapseAllBtn.classList.toggle('opacity-50', !showAll);
     };
 
     populate(false);
-
-    showAllBtn.addEventListener('click', () => populate(true));
-    collapseAllBtn.addEventListener('click', () => populate(false));
+    if (!showAllBtn.dataset.listenerAttached) {
+            showAllBtn.addEventListener('click', () => populate(true));
+            collapseAllBtn.addEventListener('click', () => populate(false));
+            showAllBtn.dataset.listenerAttached = 'true';
+    }
 }
 
 
