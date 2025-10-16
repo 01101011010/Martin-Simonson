@@ -1,0 +1,220 @@
+/* General and Utility Styles */
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    transition: background-image 0.5s ease-in-out;
+}
+
+.lang-active {
+    font-weight: 700;
+    color: #F9FAFB;
+}
+
+.modal-open {
+    overflow: hidden;
+}
+
+/* Section Styling */
+.section-content {
+    background-color: rgba(0, 0, 0, 0.7); /* Dark semi-transparent overlay */
+    padding: 2rem;
+    border-radius: 0.5rem;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px); /* For Safari compatibility */
+}
+
+#hero h1, #hero p {
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+}
+
+/* Responsive & Fixed Section Backgrounds */
+#hero, #books, #news {
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+/* Default mobile images */
+#hero {
+    background-image: url('https://res.cloudinary.com/dzef5s7pq/image/upload/v1758985648/Journey_rwtogk.jpg');
+}
+#books {
+    background-image: url('https://res.cloudinary.com/dzef5s7pq/image/upload/v1758985867/Stream_vvrse3.jpg');
+}
+#news {
+    background-image: url('https://res.cloudinary.com/dzef5s7pq/image/upload/v1758985790/Ice_ogqlc4.jpg');
+}
+
+/* Overrides for desktop screens */
+@media (min-width: 769px) {
+    #hero {
+        background-image: url('https://res.cloudinary.com/dzef5s7pq/image/upload/w_1920,q_auto,f_auto/v1758389151/Journey_bp28bm.jpg');
+    }
+    #books {
+        background-image: url('https://res.cloudinary.com/dzef5s7pq/image/upload/w_1920,q_auto,f_auto/v1758389155/Stream_fo2u2x.jpg');
+    }
+    #news {
+        background-image: url('https://res.cloudinary.com/dzef5s7pq/image/upload/w_1920,q_auto,f_auto/v1758389149/Ice_rnvvk1.jpg');
+    }
+    .section-content {
+        padding: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .section-content {
+        padding: 1rem;
+    }
+}
+
+/* Talks Section Styles */
+.talks-video-wrapper {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%; /* 16:9 Aspect Ratio */
+    border-radius: 0.5rem;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}       
+
+.talks-video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.talks-info-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    min-height: 220px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}       
+
+.talks-info-card .congress-name {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #a5b4fc; /* text-indigo-300 */ 
+    margin-bottom: 0.5rem;
+}
+
+.talks-info-card .talk-date {
+    font-size: 1rem;
+    color: #d1d5db; /* text-gray-300 */
+}
+
+/* Skeleton Loader Styles */
+.skeleton {
+    background-color: #2d3748;
+    border-radius: 0.5rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.skeleton::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.08), transparent);
+    animation: skeleton-shine 1.5s infinite;
+}
+
+@keyframes skeleton-shine {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+.skeleton-book {
+    width: 200px;
+    height: 300px;
+}
+
+.skeleton-title {
+    height: 1.25rem;
+    width: 80%;
+    margin: 1rem auto 0.5rem;
+}
+
+.skeleton-text {
+    height: 0.875rem;
+    width: 60%;
+    margin: 0 auto;
+}
+
+/* Color Overrides for Dynamic Content */
+/* Fix for book descriptions */
+#books .text-gray-800, 
+#books .text-gray-700,
+#books .text-gray-600 {
+    color: #D1D5DB !important; /* text-gray-300 */
+}
+
+#books .accordion-panel h3,
+#books .accordion-panel h4,
+#books .accordion-panel h5,
+#books .accordion-panel a {
+    color: #FFFFFF !important;
+}
+
+/* Fix for News post descriptions */
+#news .text-gray-800,
+#news .text-gray-700,
+#news .text-gray-600,
+#news .text-black {
+    color: #9CA3AF !important; /* text-gray-400 */
+}
+
+/* Fix for news post titles */
+#news h3,
+#news h4,
+#news h5 {
+    color: #F3F4F6 !important; /* text-gray-100 */
+}
+
+#news a {
+    color: #A78BFA !important;
+}
+
+#news a:hover {
+    color: #C4B5FD !important;
+}
+
+/* Fix for talks section */
+#talks h3,
+#talks h4,
+#talks h5 {
+    color: #FFFFFF !important;
+}
+
+#talks a {
+    color: #A78BFA !important;
+}
+
+/* Fix for modal labels */
+#modal-available-label,
+#modal-year-label,
+#modal-desc-title {
+    color: #FFFFFF !important;
+}
+
+/* Deprecated - can be removed if not used elsewhere */
+.subtle-bg-texture {
+    background-image: url('https://www.transparenttextures.com/patterns/light-paper-fibers.png');
+}
