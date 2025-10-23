@@ -30,15 +30,16 @@ body {
     text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
 }
 
-/* Responsive & Fixed Section Backgrounds */
+/* 1. This sets the shared behavior for all sections */
 #hero, #books, #news {
     background-position: center center;
     background-repeat: no-repeat;
-    background-attachment: fixed;
+    /* DEFAULT (MOBILE): Use 'scroll' to prevent distortion */
+    background-attachment: scroll; 
     background-size: cover;
 }
 
-/* Default mobile images */
+/* 2. These are the default images for MOBILE screens */
 #hero {
     background-image: url('https://res.cloudinary.com/dzef5s7pq/image/upload/v1758985648/Journey_rwtogk.jpg');
 }
@@ -49,8 +50,14 @@ body {
     background-image: url('https://res.cloudinary.com/dzef5s7pq/image/upload/v1758985790/Ice_ogqlc4.jpg');
 }
 
-/* Overrides for desktop screens */
+/* 3. This block OVERRIDES images AND attachment for DESKTOP screens */
 @media (min-width: 769px) {
+    /* RE-ENABLE the fixed effect ONLY on desktop */
+    #hero, #books, #news {
+        background-attachment: fixed;
+    }
+
+    /* Overrides for desktop images */
     #hero {
         background-image: url('https://res.cloudinary.com/dzef5s7pq/image/upload/w_1920,q_auto,f_auto/v1758389151/Journey_bp28bm.jpg');
     }
@@ -59,9 +66,6 @@ body {
     }
     #news {
         background-image: url('https://res.cloudinary.com/dzef5s7pq/image/upload/w_1920,q_auto,f_auto/v1758389149/Ice_rnvvk1.jpg');
-    }
-    .section-content {
-        padding: 2rem;
     }
 }
 
