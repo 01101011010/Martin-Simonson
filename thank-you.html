@@ -12,12 +12,46 @@
 </head>
 <body class="bg-black text-gray-200 flex items-center justify-center min-h-screen">
     <div class="text-center p-8 bg-gray-800 rounded-lg shadow-xl max-w-md mx-auto">
-        <h1 class="text-3xl font-bold text-white mb-4">Thank You!</h1>
-        <p class="text-gray-400 mb-8">Your message has been sent successfully. I'll get back to you as soon as possible.</p>
-        <a href="index.html" 
+        
+        <h1 id="thank-you-title" class="text-3xl font-bold text-white mb-4">Thank You!</h1>
+        <p id="thank-you-p" class="text-gray-400 mb-8">Your message has been sent successfully. I'll get back to you as soon as possible.</p>
+        <a id="thank-you-link" href="index.html" 
            class="bg-indigo-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-indigo-700 transition duration-300 inline-block">
             &larr; Back to the website
         </a>
     </div>
+
+    <script>
+        // A mini-translation object just for this page
+        const translations = {
+            en: {
+                'thank-you-title': 'Thank You!',
+                'thank-you-p': "Your message has been sent successfully. I'll get back to you as soon as possible.",
+                'thank-you-link': '&larr; Back to the website'
+            },
+            es: {
+                'thank-you-title': '¡Gracias!',
+                'thank-you-p': 'Tu mensaje ha sido enviado con éxito. Te responderé lo antes posible.',
+                'thank-you-link': '&larr; Volver al sitio'
+            }
+        };
+
+        // A simple function to set the language
+        const setLanguage = (lang) => {
+            const elements = translations[lang];
+            for (const key in elements) {
+                const element = document.getElementById(key);
+                if (element) {
+                    element.innerHTML = elements[key];
+                }
+            }
+            // Set the page's lang attribute
+            document.documentElement.lang = lang;
+        };
+
+        // Check localStorage for the saved language and run the translation
+        const savedLang = localStorage.getItem('language') || 'en';
+        setLanguage(savedLang);
+    </script>
 </body>
 </html>
