@@ -59,12 +59,13 @@
                 </svg>
             </button>
 
-            <a href="#hero" class="block py-4 text-2xl text-gray-300 hover:text-white">Home</a>
-            <a href="#about" class="block py-4 text-2xl text-gray-300 hover:text-white">About</a>
-            <a href="#books" class="block py-4 text-2xl text-gray-300 hover:text-white">Books</a>
-            <a href="#talks" class="block py-4 text-2xl text-gray-300 hover:text-white">Talks</a>
-            <a href="#news" class="block py-4 text-2xl text-gray-300 hover:text-white">News</a>
-            <a href="#contact" class="block py-4 text-2xl text-gray-300 hover:text-white">Contact</a>
+            <a href="#hero" class="block py-4 text-2xl text-gray-300 hover:text-white">Home</a> 
+            <a href="#about" id="nav-about-mobile" class="block py-4 text-2xl text-gray-300 hover:text-white">About</a>
+            <a href="#books" id="nav-books-mobile" class="block py-4 text-2xl text-gray-300 hover:text-white">Books</a>
+            <a href="#talks" id="nav-talks-mobile" class="block py-4 text-2xl text-gray-300 hover:text-white">Talks</a>
+            <a href="#news" id="nav-news-mobile" class="block py-4 text-2xl text-gray-300 hover:text-white">News</a>
+            <a href="#contact" id="nav-contact-mobile" class="block py-4 text-2xl text-gray-300 hover:text-white">Contact</a>
+            
             <div class="mt-8 pt-8 border-t border-gray-700 w-1/2">
                 <div class="flex items-center justify-center space-x-4">
                     <button id="lang-en-mobile" class="text-2xl text-gray-400 hover:text-white transition duration-300">EN</button>
@@ -427,164 +428,168 @@
     <!-- Main Page Script -->
     <script>
         const translations = {
-        en: {
-            'nav-about': 'About',
-            'nav-books': 'Books',
-            'nav-talks': 'Talks',
-            'nav-news': 'News',
-            'nav-contact': 'Contact',
-            /* --- UPDATED --- */
-            'hero-subtitle': 'Writer, researcher and editor exploring the intersection of culture, nature and virtual realities.',
-            'about-title': 'About Me',
-            /* --- NEW SUMMARY --- */
-            'about-summary': `Martin Simonson was born in Gothenburg, Sweden, and grew up on the shores of Idefjorden, on the Norwegian border. As a child, he explored nature, read fantasy, and later developed passions for English literature and the Spanish language. After studying creative writing, he settled permanently in northern Spain in 1997.`,
-            /* --- UPDATED FULL TEXT (in p1) --- */
-            'about-full-p1': `Martin Simonson was born in Gothenburg, Sweden, and grew up on the shores of
-    Idefjorden, on the Norwegian border, where his family has been dedicated to forestry
+            en: {
+                'nav-about': 'About',
+                'nav-books': 'Books',
+                'nav-talks': 'Talks',
+                'nav-news': 'News',
+                'nav-contact': 'Contact',
+                /* --- ADD MOBILE NAV --- */
+                'nav-about-mobile': 'About', 
+                'nav-books-mobile': 'Books', 
+                'nav-talks-mobile': 'Talks', 
+                'nav-news-mobile': 'News', 
+                'nav-contact-mobile': 'Contact',
+                /* --- END ADD --- */
+                'hero-subtitle': 'Writer, researcher and editor exploring the intersection of culture, nature and virtual realities.',
+                'about-title': 'About Me',
+                'about-summary': `Martin Simonson was born in Gothenburg, Sweden, and grew up on the shores of Idefjorden, on the Norwegian border. As a child, he explored nature, read fantasy, and later developed passions for English literature and the Spanish language. After studying creative writing, he settled permanently in northern Spain in 1997.`,
+                'about-full-p1': `Martin Simonson was born in Gothenburg, Sweden, and grew up on the shores of
+        Idefjorden, on the Norwegian border, where his family has been dedicated to forestry
 
-    for generations. As a child, he explored the nature of the area with a group of close
-    friends, and read a substantial amount of fantasy. Later, in high school, he fell in love
-    with English literature and the Spanish language, both of which were to become life-
-    long passions.
-    After high school he left for northern Spain to improve his Spanish, and found a
-    country that resonated deeply with him. Returning to Sweden six months later, he
-    began studying psychology and social anthropology at the University of Gothenburg
-    before he decided that literary fiction was more in his line. This prompted him to take
-    a year-long course in creative writing at Fridhems Folkhögskola. In 1997, the main
-    passions in his life converged when he settled permanently in northern Spain.
-    Academically, English literature was his main focus, so he took a degree in English
-    Studies. This was followed up by a doctorate in literary studies, translation and
-    linguistics, that culminated with a Ph.D. thesis in which he explored the interaction of
-    different narrative genres in J.R.R. Tolkien’s The Lord of the Rings. During this time, he
-    had two wonderful daughters, Lucía and Gabriela.
-    Since 2006, he teaches English literature and speculative fiction at the
-    University of the Basque Country. In 2008 he bought and fixed up an old stone house
-    in the country, where he now lives with his partner Laura, surrounded by mountains,
-    woods and animals such as his dog Terra, a horse named Trueno, a dwarf donkey by
-    the name of Antolín, and a tiny cat called Spiritus. The house and its surroundings in
-    Valdegovía quickly became a vital point of reference in his life, a place to read in
-    peace, think in silence and nurture his interest in nature. It is also the place where he
-    has written, translated and edited most of his books.
-    Apart from various Young-Adult fantasy novels, Martin has created works of
-    science fiction, thrillers and short stories, and he has written, introduced and edited a
-    number of essays and anthologies on fantasy, science fiction, Western American
-    literature and Gothic horror. He is the Spanish translator of many posthumously
-    published works by J.R.R. Tolkien, and he revised the official translations of The
-    Silmarillion, Unfinished Tales, The Hobbit and The Fellowship of the Ring. Apart from
-    these books, he has translated around thirty novels, plays, historical essays and graphic
-    novels from English, Swedish and Norwegian into Spanish. In his own works, as in life,
-    Martin’s main interest lies in exploring the borderland between the real world and the
-    virtual universes in which we all dwell these days. He sees art, nature, imagination and
-    creativity as crucial factors in the adventure of life and literature.`,
-            /* --- CLEARED PARAGRAPHS --- */
-            'about-full-p2': '',
-            'about-full-p3': '',
-            'about-full-p4': '',
-            'read-more': 'Read More &rarr;',
-            'read-less': 'Read Less &larr;',
-            'books-title': 'Books',
-            'category-fiction': 'Fiction',
-            'category-essays': 'Essays',
-            'category-anthologies': 'Anthologies and critical editions',
-            'category-translations': 'Translations',
-            'modal-synopsis': 'Synopsis',
-            'modal-abstract': 'Abstract',
-            'modal-buy-now': 'Buy Now',
-            'modal-available-in': 'Available in: ',
-            'modal-year': 'Year: ',
-            'talks-title': 'Talks & Interviews',
-            'news-title': 'Latest News Posts',
-            'contact-title': 'Get In Touch',
-            /* --- UPDATED --- */
-            'contact-p': "Have a question or want to tell me about a project you think I’m interested in? Feel free to reach out.",
-            'footer-copy': '&copy; 2025 Martin Simonson. All rights reserved.',
-            'expand-all-btn': 'Expand All',
-            'collapse-all-btn': 'Collapse All',
-            'contact-label-email': 'Your Email',
-            'contact-label-name': 'Your Name',
-            'contact-label-message': 'Message',
-            'contact-button-submit': 'Send Message'
-        },
-        es: {
-            'nav-about': 'Sobre mí',
-            'nav-books': 'Libros',
-            'nav-talks': 'Charlas',
-            'nav-news': 'Noticias',
-            'nav-contact': 'Contacto',
-            /* --- UPDATED --- */
-            'hero-subtitle': 'Escritor, investigador y editor explorando el punto de encuentro entre la cultura, la naturaleza y las realidades virtuales.',
-            'about-title': 'Sobre Mí',
-            /* --- NEW SUMMARY --- */
-            'about-summary': `Martin Simonson nació en Gotemburgo, Suecia, y creció a orillas del Idefjorden. De niño, exploró la naturaleza, leyó literatura fantástica y más tarde desarrolló pasiones por la literatura inglesa y la lengua española. Tras estudiar escritura creativa, se estableció permanentemente en el norte de España en 1997.`,
-            /* --- UPDATED FULL TEXT (in p1) --- */
-            'about-full-p1': `Martin Simonson nació en Gotemburgo, Suecia, y creció a orillas del Idefjorden, en la
-    frontera con Noruega, donde su familia se ha dedicado a la silvicultura desde hace
-    generaciones. De niño, exploró la naturaleza de la zona y leyó una cantidad
-    considerable de literatura fantástica. Más tarde, en el instituto, se enamoró de la
-    literatura inglesa y de la lengua española. Ambas cosas se convertirían en pasiones
-    para toda la vida.
-    Después del bachillerato se marchó al norte de España para mejorar su
-    español. Se encontró con un país que le dejó una profunda huella. Medio año más
-    tarde comenzó sus estudios en la Universidad de Gotemburgo, primero en psicología y
-    más adelante en antropología, antes de darse cuenta de que le interesaba más la
-    literatura. Esto lo llevó a cursar un año de escritura creativa en Fridhems Folkhögskola.
-    En 1997, las principales pasiones de su vida convergieron cuando se estableció
-    permanentemente en el norte de España. En lo académico, la literatura inglesa
-    constituía su principal foco de interés, por lo que se matriculó en la licenciatura de
-    filología inglesa. Al terminar la carrera, realizó un doctorado en estudios literarios,
-    traducción y lingüística, que culminó con una tesis doctoral sobre el diálogo entre
-    diferentes géneros narrativos en El Señor de los Anillos de J.R.R. Tolkien. En estos años
-    tuvo dos hijas, Lucía y Gabriela.
-    Desde 2006, es profesor de literatura inglesa y ficción especulativa en la
-    Universidad del País Vasco. En 2008 compró y reformó una antigua casa de piedra en
-    la campiña alavesa, donde ahora vive con su pareja Laura, rodeado de montañas,
-    bosques y animales: la weimaraner Terra, un caballo llamado Trueno, un burro enano
-    de nombre Antolín y una gata diminuta llamada Spiritus. La casa y su entorno en
-    Valdegovía se convirtieron rápidamente en un punto de referencia vital; un lugar
-    donde podía leer en paz, pensar en silencio y cultivar su interés por la naturaleza. Es
-    también el lugar donde ha escrito, traducido y editado la mayoría de sus libros.
-    Además de varias novelas de fantasía para jóvenes, Martin ha creado obras de
-    ciencia ficción, thrillers y relatos cortos, y ha escrito, introducido y editado diversos
-    ensayos y antologías sobre literatura fantástica, ciencia ficción, literatura del Oeste
-    americano y terror gótico. Asimismo, es el traductor al español de muchas obras
-    póstumas de J.R.R. Tolkien, y revisó las traducciones oficiales de El Silmarillion, los
-    Cuentos Inconclusos, El Hobbit y La Comunidad del Anillo. Aparte de estos libros, ha
-    traducido una treintena de novelas, obras de teatro, ensayos de historia y novelas
-    gráficas del inglés, el sueco y el noruego al español. En su propia obra, como en la vida,
-    su principal interés reside en explorar las tierras fronterizas entre el mundo real y los
-    universos virtuales que todos habitamos hoy en día. Para Martin, el arte, la naturaleza,
-    la imaginación y la creatividad son factores cruciales en la aventura de la vida y la
-    literatura.`,
-            /* --- CLEARED PARAGRAPHS --- */
-            'about-full-p2': '',
-            'about-full-p3': '',
-            'about-full-p4': '',
-            'read-more': 'Leer más &rarr;',
-            'read-less': 'Leer menos &larr;',
-            'books-title': 'Libros',
-            'category-fiction': 'Ficción',
-            'category-essays': 'Ensayos',
-            'category-anthologies': 'Antologías y ediciones críticas',
-            'category-translations': 'Traducciones',
-            'modal-synopsis': 'Sinopsis',
-            'modal-abstract': 'Resumen',
-            'modal-buy-now': 'Comprar Ahora',
-            'modal-available-in': 'Disponible en: ',
-            'modal-year': 'Año: ',
-            'talks-title': 'Charlas y Entrevistas',
-            'news-title': 'Últimas Noticias',
-            'contact-title': 'Ponte en Contacto',
-            /* --- UPDATED --- */
-            'contact-p': '¿Tienes alguna pregunta o quieres hablar de algún proyecto que podría interesarme? Escríbeme.',
-            'footer-copy': '&copy; 2025 Martin Simonson. Todos los derechos reservados.',
-            'expand-all-btn': 'Expandir Todo',
-            'collapse-all-btn': 'Contraer Todo',
-            'contact-label-email': 'Tu Email',
-            'contact-label-name': 'Tu Nombre',
-            'contact-label-message': 'Mensaje',
-            'contact-button-submit': 'Enviar Mensaje'
-        }
-    };
+        for generations. As a child, he explored the nature of the area with a group of close
+        friends, and read a substantial amount of fantasy. Later, in high school, he fell in love
+        with English literature and the Spanish language, both of which were to become life-
+        long passions.
+        After high school he left for northern Spain to improve his Spanish, and found a
+        country that resonated deeply with him. Returning to Sweden six months later, he
+        began studying psychology and social anthropology at the University of Gothenburg
+        before he decided that literary fiction was more in his line. This prompted him to take
+        a year-long course in creative writing at Fridhems Folkhögskola. In 1997, the main
+        passions in his life converged when he settled permanently in northern Spain.
+        Academically, English literature was his main focus, so he took a degree in English
+        Studies. This was followed up by a doctorate in literary studies, translation and
+        linguistics, that culminated with a Ph.D. thesis in which he explored the interaction of
+        different narrative genres in J.R.R. Tolkien’s The Lord of the Rings. During this time, he
+        had two wonderful daughters, Lucía and Gabriela.
+        Since 2006, he teaches English literature and speculative fiction at the
+        University of the Basque Country. In 2008 he bought and fixed up an old stone house
+        in the country, where he now lives with his partner Laura, surrounded by mountains,
+        woods and animals such as his dog Terra, a horse named Trueno, a dwarf donkey by
+        the name of Antolín, and a tiny cat called Spiritus. The house and its surroundings in
+        Valdegovía quickly became a vital point of reference in his life, a place to read in
+        peace, think in silence and nurture his interest in nature. It is also the place where he
+        has written, translated and edited most of his books.
+        Apart from various Young-Adult fantasy novels, Martin has created works of
+        science fiction, thrillers and short stories, and he has written, introduced and edited a
+        number of essays and anthologies on fantasy, science fiction, Western American
+        literature and Gothic horror. He is the Spanish translator of many posthumously
+        published works by J.R.R. Tolkien, and he revised the official translations of The
+        Silmarillion, Unfinished Tales, The Hobbit and The Fellowship of the Ring. Apart from
+        these books, he has translated around thirty novels, plays, historical essays and graphic
+        novels from English, Swedish and Norwegian into Spanish. In his own works, as in life,
+        Martin’s main interest lies in exploring the borderland between the real world and the
+        virtual universes in which we all dwell these days. He sees art, nature, imagination and
+        creativity as crucial factors in the adventure of life and literature.`,
+                'about-full-p2': '',
+                'about-full-p3': '',
+                'about-full-p4': '',
+                'read-more': 'Read More &rarr;',
+                'read-less': 'Read Less &larr;',
+                'books-title': 'Books',
+                'category-fiction': 'Fiction',
+                'category-essays': 'Essays',
+                'category-anthologies': 'Anthologies and critical editions',
+                'category-translations': 'Translations',
+                'modal-synopsis': 'Synopsis',
+                'modal-abstract': 'Abstract',
+                'modal-buy-now': 'Buy Now',
+                'modal-available-in': 'Available in: ',
+                'modal-year': 'Year: ',
+                'talks-title': 'Talks & Interviews',
+                'news-title': 'Latest News Posts',
+                'contact-title': 'Get In Touch',
+                'contact-p': "Have a question or want to tell me about a project you think I’m interested in? Feel free to reach out.",
+                'footer-copy': '&copy; 2025 Martin Simonson. All rights reserved.',
+                'expand-all-btn': 'Expand All',
+                'collapse-all-btn': 'Collapse All',
+                'contact-label-email': 'Your Email',
+                'contact-label-name': 'Your Name',
+                'contact-label-message': 'Message',
+                'contact-button-submit': 'Send Message'
+            },
+            es: {
+                'nav-about': 'Sobre mí',
+                'nav-books': 'Libros',
+                'nav-talks': 'Charlas',
+                'nav-news': 'Noticias',
+                'nav-contact': 'Contacto',
+                /* --- ADD MOBILE NAV --- */
+                'nav-about-mobile': 'Sobre mí', 
+                'nav-books-mobile': 'Libros', 
+                'nav-talks-mobile': 'Charlas', 
+                'nav-news-mobile': 'Noticias', 
+                'nav-contact-mobile': 'Contacto',
+                /* --- END ADD --- */
+                'hero-subtitle': 'Escritor, investigador y editor explorando el punto de encuentro entre la cultura, la naturaleza y las realidades virtuales.',
+                'about-title': 'Sobre Mí',
+                'about-summary': `Martin Simonson nació en Gotemburgo, Suecia, y creció a orillas del Idefjorden. De niño, exploró la naturaleza, leyó literatura fantástica y más tarde desarrolló pasiones por la literatura inglesa y la lengua española. Tras estudiar escritura creativa, se estableció permanentemente en el norte de España en 1997.`,
+                'about-full-p1': `Martin Simonson nació en Gotemburgo, Suecia, y creció a orillas del Idefjorden, en la
+        frontera con Noruega, donde su familia se ha dedicado a la silvicultura desde hace
+        generaciones. De niño, exploró la naturaleza de la zona y leyó una cantidad
+        considerable de literatura fantástica. Más tarde, en el instituto, se enamoró de la
+        literatura inglesa y de la lengua española. Ambas cosas se convertirían en pasiones
+        para toda la vida.
+        Después del bachillerato se marchó al norte de España para mejorar su
+        español. Se encontró con un país que le dejó una profunda huella. Medio año más
+        tarde comenzó sus estudios en la Universidad de Gotemburgo, primero en psicología y
+        más adelante en antropología, antes de darse cuenta de que le interesaba más la
+        literatura. Esto lo llevó a cursar un año de escritura creativa en Fridhems Folkhögskola.
+        En 1997, las principales pasiones de su vida convergieron cuando se estableció
+        permanentemente en el norte de España. En lo académico, la literatura inglesa
+        constituía su principal foco de interés, por lo que se matriculó en la licenciatura de
+        filología inglesa. Al terminar la carrera, realizó un doctorado en estudios literarios,
+        traducción y lingüística, que culminó con una tesis doctoral sobre el diálogo entre
+        diferentes géneros narrativos en El Señor de los Anillos de J.R.R. Tolkien. En estos años
+        tuvo dos hijas, Lucía y Gabriela.
+        Desde 2006, es profesor de literatura inglesa y ficción especulativa en la
+        Universidad del País Vasco. En 2008 compró y reformó una antigua casa de piedra en
+        la campiña alavesa, donde ahora vive con su pareja Laura, rodeado de montañas,
+        bosques y animales: la weimaraner Terra, un caballo llamado Trueno, un burro enano
+        de nombre Antolín y una gata diminuta llamada Spiritus. La casa y su entorno en
+        Valdegovía se convirtieron rápidamente en un punto de referencia vital; un lugar
+        donde podía leer en paz, pensar en silencio y cultivar su interés por la naturaleza. Es
+        también el lugar donde ha escrito, traducido y editado la mayoría de sus libros.
+        Además de varias novelas de fantasía para jóvenes, Martin ha creado obras de
+        ciencia ficción, thrillers y relatos cortos, y ha escrito, introducido y editado diversos
+        ensayos y antologías sobre literatura fantástica, ciencia ficción, literatura del Oeste
+        americano y terror gótico. Asimismo, es el traductor al español de muchas obras
+        póstumas de J.R.R. Tolkien, y revisó las traducciones oficiales de El Silmarillion, los
+        Cuentos Inconclusos, El Hobbit y La Comunidad del Anillo. Aparte de estos libros, ha
+        traducido una treintena de novelas, obras de teatro, ensayos de historia y novelas
+        gráficas del inglés, el sueco y el noruego al español. En su propia obra, como en la vida,
+        su principal interés reside en explorar las tierras fronterizas entre el mundo real y los
+        universos virtuales que todos habitamos hoy en día. Para Martin, el arte, la naturaleza,
+        la imaginación y la creatividad son factores cruciales en la aventura de la vida y la
+        literatura.`,
+                'about-full-p2': '',
+                'about-full-p3': '',
+                'about-full-p4': '',
+                'read-more': 'Leer más &rarr;',
+                'read-less': 'Leer menos &larr;',
+                'books-title': 'Libros',
+                'category-fiction': 'Ficción',
+                'category-essays': 'Ensayos',
+                'category-anthologies': 'Antologías y ediciones críticas',
+                'category-translations': 'Traducciones',
+                'modal-synopsis': 'Sinopsis',
+                'modal-abstract': 'Resumen',
+                'modal-buy-now': 'Comprar Ahora',
+                'modal-available-in': 'Disponible en: ',
+                'modal-year': 'Año: ',
+                'talks-title': 'Charlas y Entrevistas',
+                'news-title': 'Últimas Noticias',
+                'contact-title': 'Ponte en Contacto',
+                'contact-p': '¿Tienes alguna pregunta o quieres hablar de algún proyecto que podría interesarme? Escríbeme.',
+                'footer-copy': '&copy; 2025 Martin Simonson. Todos los derechos reservados.',
+                'expand-all-btn': 'Expandir Todo',
+                'collapse-all-btn': 'Contraer Todo',
+                'contact-label-email': 'Tu Email',
+                'contact-label-name': 'Tu Nombre',
+                'contact-label-message': 'Mensaje',
+                'contact-button-submit': 'Enviar Mensaje'
+            }
+        };
 
         const setLanguage = (lang) => {
             // 1. Instantly update all simple text elements
