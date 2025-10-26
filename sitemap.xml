@@ -1,59 +1,53 @@
-{\rtf1\ansi\ansicpg1252\cocoartf2822
-\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
-{\colortbl;\red255\green255\blue255;}
-{\*\expandedcolortbl;;}
-\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh8400\viewkind0
-\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
-\f0\fs24 \cf0 <?xml version="1.0" encoding="UTF-8"?>\
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\
-\
-  <!-- Main Homepage -->\
-  <url>\
-    <loc>https://martinsimonson.net/</loc>\
-    <lastmod>2025-10-26</lastmod> <!-- Use the date you last updated the site -->\
-    <changefreq>monthly</changefreq> <!-- Or 'weekly' if you update news often -->\
-    <priority>1.0</priority>\
-  </url>\
-\
-  <!-- Thank You Page (after contact form submission) -->\
-  <url>\
-    <loc>https://martinsimonson.net/thank-you.html</loc>\
-    <lastmod>2025-10-26</lastmod> <!-- Use the date you created this page -->\
-    <changefreq>yearly</changefreq> <!-- This page likely won't change -->\
-    <priority>0.5</priority> \
-  </url>\
-\
-  <url>\
-    <loc>https://martinsimonson.net/#about</loc>\
-    <lastmod>2025-10-26</lastmod>\
-    <changefreq>monthly</changefreq>\
-    <priority>0.8</priority>\
-  </url>\
-  <url>\
-    <loc>https://martinsimonson.net/#books</loc>\
-    <lastmod>2025-10-26</lastmod>\
-    <changefreq>monthly</changefreq>\
-    <priority>0.8</priority>\
-  </url>\
-  <url>\
-    <loc>https://martinsimonson.net/#talks</loc>\
-    <lastmod>2025-10-26</lastmod>\
-    <changefreq>monthly</changefreq>\
-    <priority>0.8</priority>\
-  </url>\
-  <url>\
-    <loc>https://martinsimonson.net/#news</loc>\
-    <lastmod>2025-10-26</lastmod>\
-    <changefreq>monthly</changefreq>\
-    <priority>0.8</priority>\
-  </url>\
-  <url>\
-    <loc>https://martinsimonson.net/#contact</loc>\
-    <lastmod>2025-10-26</lastmod>\
-    <changefreq>yearly</changefreq>\
-    <priority>0.7</priority>\
-  </url>\
-\
-</urlset>\
-}
+  <!-- Main Homepage -->
+  <url>
+    <loc>https://martinsimonson.net/</loc>
+    <lastmod>2025-10-26</lastmod> <!-- Update this date -->
+    <changefreq>monthly</changefreq> 
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Thank You Page -->
+  <url>
+    <loc>https://martinsimonson.net/thank-you.html</loc>
+    <lastmod>2025-10-26</lastmod> <!-- Update this date -->
+    <changefreq>yearly</changefreq> 
+    <priority>0.5</priority> 
+  </url>
+
+  <!-- Optional Section Links -->
+  <url>
+    <loc>https://martinsimonson.net/#about</loc>
+    <lastmod>2025-10-26</lastmod> <!-- Update this date -->
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://martinsimonson.net/#books</loc>
+    <lastmod>2025-10-26</lastmod> <!-- Update this date -->
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://martinsimonson.net/#talks</loc>
+    <lastmod>2025-10-26</lastmod> <!-- Update this date -->
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://martinsimonson.net/#news</loc>
+    <lastmod>2025-10-26</lastmod> <!-- Update this date -->
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://martinsimonson.net/#contact</loc>
+    <lastmod>2025-10-26</lastmod> <!-- Update this date -->
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+</urlset>
+
