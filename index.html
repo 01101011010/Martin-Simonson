@@ -8,6 +8,10 @@
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="style.css">
+    <link rel="alternate" hreflang="en" href="https://martinsimonson.net/" />
+    <link rel="alternate" hreflang="es" href="https://martinsimonson.net/" />
+    <!-- Optional: Specify the default language if someone lands without a preference -->
+    <link rel="alternate" hreflang="en" href="https://martinsimonson.net/" />
     <!-- Google Fonts - Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -430,6 +434,8 @@
     <script>
         const translations = {
             en: {
+                'page-title': 'Martin Simonson | Writer, Researcher, Editor, Translator',
+                'meta-description': "Official website of Martin Simonson, a writer, researcher, editor, and translator exploring culture, nature, and virtual realities. Discover his books, talks, and news.",
                 'nav-about': 'About Martin',
                 'nav-books': 'Books',
                 'nav-talks': 'Talks',
@@ -510,6 +516,8 @@
                 'contact-button-submit': 'Send Message'
             },
             es: {
+                'page-title': 'Martin Simonson | Escritor, Investigador, Editor, Traductor',
+                'meta-description': "Sitio web oficial de Martin Simonson, escritor, investigador, editor y traductor que explora cultura, naturaleza y realidades virtuales. Descubre sus libros, charlas y noticias.",
                 'nav-about': 'Sobre Martin',
                 'nav-books': 'Libros',
                 'nav-talks': 'Charlas',
@@ -593,26 +601,40 @@
         };
 
         const setLanguage = (lang) => {
-            // 1. Instantly update all simple text elements
+            // 1. Update standard text elements via IDs
             const elements = translations[lang];
             for (const key in elements) {
+                // Skip the special SEO keys for now
+                if (key === 'page-title' || key === 'meta-description') continue; 
+                
                 const element = document.getElementById(key);
                 if (element) {
                     element.innerHTML = elements[key];
                 }
             }
 
-            // 2. Save the new language choice
+            // 2. Update SEO Meta Tags and HTML lang attribute
+            document.title = translations[lang]['page-title']; // Update page title
+            const metaDesc = document.querySelector('meta[name="description"]');
+            if (metaDesc) {
+                metaDesc.setAttribute('content', translations[lang]['meta-description']); // Update meta description
+            } else {
+                // If meta description doesn't exist, create it (good practice)
+                const newMetaDesc = document.createElement('meta');
+                newMetaDesc.setAttribute('name', 'description');
+                newMetaDesc.setAttribute('content', translations[lang]['meta-description']);
+                document.head.appendChild(newMetaDesc);
+            }
+            document.documentElement.lang = lang; // Update <html lang="...">
+
+            // 3. Save the new language choice
             localStorage.setItem('language', lang);
 
-            // 3. Update the button styles
+            // 4. Update the button styles
             updateLangButtons(lang);
-            updateReadMoreButton(lang);
+            updateReadMoreButton(lang); // Ensure this function exists or remove if not needed
 
-            // 4. Re-populate all dynamic sections.
-            // We add a tiny delay (0 milliseconds) to ensure the browser
-            // has time to process the simple text changes before we
-            // rebuild the complex book grid. This forces it to update correctly.
+            // 5. Re-populate dynamic sections (Books, Talks, News)
             setTimeout(() => {
                 if (typeof populateBooks === 'function') populateBooks(lang);
                 if (typeof populateTalks === 'function') populateTalks(lang);
